@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <title>TO-DO List JS APP</title>
+  </head>
+
+  <style>
+    :root{
+    --priclr:#06283d;
+    --secclr:#256d85;
+    --actclr:#4785ff;
+    --offwyt:#dffdff;
+    --dulred: rgb(245, 24, 24);
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--offwyt);
+}
+
+button{
+    cursor: pointer;
+}
+
+.top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px 0;
+}
+
+.top h1{
+    font-size: 1.5rem;
+}
+
+#regbtn{
+    background-color: transparent;
+    border: 1px solid var(--offwyt);
+    padding:5px 10px;
+    border-radius: 50px;
+    color: var(--offwyt);
+}
+
+.nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+padding: 5px 7px;
+height: 70px;
+border-bottom: 1px solid var(--offwyt);
+margin-bottom: 10px;
+}
+
+.logoarea{
+    display: flex;
+    align-items: center;
+    
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    color: var(--offwyt);
+    margin: 5px;
+    /* margin-bottom: 0; */
+    visibility: hidden;
+}
+
+#hispan{
+    margin-left: 5px;
+}
+
+#lbtn{
+    color: var(--offwyt);
+    padding: 5px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--actclr);
+    font-size: 1rem;
+    font-weight: bolder;
+    text-transform:capitalize;
+}
+
+/* Reg & Login form area =================================== */
+.regformdiv{
+    /* position: absolute;
+    visibility: hidden; */
+    display: none;
+    border: 2px solid var(--offwyt);
+margin: 10px;
+margin-bottom: 150px;
+padding: 50px 10px;
+border-radius: 10px;
+/* background-color: var(--secclr); */
+}
+
+.regformdiv h2{
+    text-align: center;
+    color: var(--offwyt);
+}
+
+#regform{
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    margin: auto;
+    padding: 10px 20px;
+}
+
+#regform input{
+    margin-bottom: 5px;
+    padding: 5px;
+    background-color: var(--offwyt);
+    outline: none;
+    border: none;
+    border-radius: 5px;
+}
+
+#regform #submitbtn{
+    background-color: var(--actclr);
+    font-size:medium;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+#closebtn{
+    background-color: transparent;
+    border: none;
+    color: var(--offwyt);
+    margin-left: 80px;
+    margin-top: 20px;
+    text-decoration: underline;
+}
+
+/* Scorebaord Area =================================== */
+.scoreboard{
+    display: flex;
+    justify-content: space-evenly;
+    color: var(--offwyt);
+}
+.tcard{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid var(--actclr);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.ticon{
+    font-size: 1rem;
+}
+
+.sbtxt{
+    color: var(--offwyt);
+    margin-left: 15px;
+    margin-bottom: 5px;
+}
+.score{
+    font-size: 1.7rem;
+    font-weight: bold;
+    margin-right: 3px;
+}
+
+.score1{
+    color: yellow;
+    font-size: 1rem;
+
+}
+
+.score2{
+    color: rgb(127, 224, 127);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.score3{
+    color: rgb(250, 79, 79);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.score4{
+    color: rgb(248, 181, 58);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+
+
+
+
+
+/* Scorebaord Area =================================== */
+
+.container{
+    background-color:var(--priclr);
+    height: 95%;
+    width: 95%;
+    max-width: 500px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    /* color: var(--offwyt) */
+}
+
+#tagline{
+    text-align: center;
+    color: var(--offwyt);
+    margin-bottom: 7px;
+}
+
+h1{
+    color: var(--offwyt);
+    text-align: center;
+    padding-left: 5px;
+}
+
+.feedback, .feedback1{
+    text-align: center;
+    color: var(--offwyt);
+    background-color: red;
+    padding: 5px;
+    margin: 5px 10px;
+    border-radius: 25px;
+    visibility: hidden;
+    transition: visibility 3s;
+    }
+
+
+
+.inputs{
+    text-align: center;
+    margin: 10px 0 20px;
+}
+
+input{
+    height: 30px;
+}
+
+#inputbox{
+    width: 95%;
+    padding: 0 5px;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    text-align: center;
+}
+
+.inputbtns{
+    margin-top: 10px;
+}
+
+#addbtn{
+    width: 20%;
+    background-color:var(--actclr);
+    border-radius: 5px;
+    box-shadow: 2px 2px 1px var(--offwyt) ;
+    color: var(--priclr);
+    font-weight: bold;
+}
+
+#searchbtn{
+    width: 20%;
+    background-color:var(--secclr);
+    border-radius: 5px;
+    box-shadow: 2px 2px 1px var(--offwyt) ;
+    color: var(--offwyt);
+    font-weight: bold;
+    margin: 0 20px;
+}
+
+.ulbox{
+    height: 250px;
+    overflow-y: scroll;
+}
+
+ul{
+    display: flex;
+    flex-direction: column-reverse;
+    /* height: 280px;
+    overflow-y: scroll; */
+}
+
+.liclass{
+    margin: 5px 10px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--offwyt);
+}
+
+.delbtn{
+background-color: var(--dulred);
+padding: 5px 8px;
+border-radius: 5px;
+color: var(--offwyt);
+font-weight: bold;
+border: none;
+    outline: none;
+}
+
+.editbtn{
+    background-color:var(--priclr);
+    padding: 5px 8px;
+    border-radius: 5px;
+    color: var(--offwyt);
+    font-weight: bold;
+    margin: 0 2px;
+    border: none;
+    outline: none;
+    }
+
+.donebtn{
+    background-color: red;
+    padding: 5px 8px;
+    border-radius: 5px;
+    color: var(--offwyt);
+    font-weight: bold;
+    border: none;
+    outline: none;
+    }    
+
+.donebtngreen{
+    background-color: green;
+    padding: 5px 8px;
+    border-radius: 5px;
+    color: var(--offwyt);
+    font-weight: bold;
+    border: none;
+    outline: none;
+    }
+
+.remclass{
+    display: none;
+}
+
+footer{
+    height: 5px;
+    text-align: center;
+    color: var(--offwyt);
+    margin-top: 5px;
+    font-size: 12px;
+    /* border-top: 1px soldi var(--offwyt); */
+    padding-top: 5px;
+}
+
+footer #fspan{
+    color: var(--offwyt);
+    font-size: bold;
+    background-color: green;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
+
+/* ================================================== */
+/* Media Query =============================== */
+@media only screen and (max-width:576px){
+    .ulbox{
+        height: 350px;
+        width:100%;
+        /* overflow-y: scroll; */
+    }
+
+    .container{
+        height: 100vh;
+        width: 100%;
+        border: none;
+        border-radius: 5px;
+        /* padding: 10px; */
+        /* color: var(--offwyt) */
+    }
+
+   
+}
+
+@media only screen and (max-width:400px){
+    .ulbox{
+        height: 380px;
+        overflow-y: scroll;
+    }
+
+    .ticon{
+        display: none;
+    }
+}
+  </style>
+  <body>
+    <div class="container">
+      <div class="top">
+        <h1>TODO LIST APP</h1>
+        <button id="regbtn" onclick="showRegForm()">Register <span>&#10093;&#10093;</span></button>
+      </div>
+
+      <!-- Nav section -->
+      <div class="nav">
+        <div class="logoarea">
+          <img src="usericon.png" alt="" width="40px" />
+          <div class="logo">
+            <span id="hispan">Hi,&nbsp;</span>
+            <h3 id="username"></h3>
+          </div>
+        </div>
+        <div class="lolibtn">
+          <button id="lbtn" onclick="showLoginForm()">Login</button>
+        </div>
+      </div>
+
+      <!-- Registration  -->
+      <div class="regformdiv">
+        <p class="feedback1"></p>
+
+        <h2>Registration Form</h2>
+        <form id="regform">
+        <input type="text" name="nameinp" id="nameinp" placeholder="Enter your name">
+        <input type="email" name="emailinp" id="emailinp" placeholder="Enter your email" required>
+        <input type="password" name="passinp" id="passinp" placeholder="Enter your password" required>
+        <input type="password" name="passinp2" id="passinp2" placeholder="Enter confirm password">
+        <input type="submit" name="inpbtn" id="submitbtn">
+         </form>
+         <button id="closebtn" onclick="closeForm()">Click to Cancel (X)</button>
+      </div>
+
+      <!-- scorebaord -->
+      <h6 class="sbtxt">Your Scoreboard</h6>
+
+      <div class="scoreboard">
+        <div class="tcard">
+            <!-- <span class="ticon ticon1">&#9783</span> -->
+            <span class="score score1">34 </span>
+            <span>tasks</span>
+        </div>
+        <div class="tcard">
+          <!-- <span class="ticon ticon2">&#9745</span>
+          <span> --></span>
+          <span class="score score2">12 </span>
+          <span>done</span>
+      </div>
+      <div class="tcard">
+        <!-- <span class="ticon ticon3">&#9746</span>
+        <span> --></span>
+        <span class="score score3">20 </span>
+        <span>undone</span>
+    </div>
+    <div class="tcard">
+      <!-- <span class="ticon ticon4">&#8778</span>
+      <span> --></span>
+      <span class="score score4">34 </span>
+      <span>%</span>
+  </div>
+      </div>
+
+      <!-- scorebaord -->
+
+      <div id="todoarea">
+      <!-- Todo section -->
+      <div class="inputs">
+        <p id="tagline">
+          ...get organised by managing all your tasks in one place.
+        </p>
+
+        <input type="text" id="inputbox" placeholder="Enter a task here...  (then click ADD or press Enter)" />
+        <div class="inputbtns">
+            <input type="button" id="addbtn" value="ADD" />
+            <input type="button" id="searchbtn" onclick="searchTodos()" value="SEARCH" />
+            <input type="button" id="addbtn" onclick="location.reload()" value="RESET" />
+        </div>
+      </div>
+      <div class="taskpanel">
+        <p class="feedback"></p>
+        <div class="ulbox">
+        <ul reversed>
+          <!-- <li class='remclass'>test item
+                <button class="delbtn">x</button>
+                </li> -->
+        </ul>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <p>&copy; All rights reserved || Designed by <span id="fspan">DevProf</span></p>
+    </footer>
+    </div>
+
+    <!-- <script src="../js/main.js"></script> -->
+    <script>
+        const welcome = document.querySelector(".logo");
+const username = document.querySelector("#username");
+const lBtn = document.getElementById('lbtn');
+const ul = document.querySelector("ul");
+const inputBox = document.querySelector("#inputbox");
+const feedback = document.querySelector(".feedback");
+const feedback1 = document.querySelector(".feedback1");
+const addBtn = document.querySelector("#addbtn");
+const regFormDiv = document.querySelector(".regformdiv");
+const regForm = document.querySelector("#regform");
+const submitBtn = document.querySelector("#submitbtn");
+
+const score1 = document.querySelector(".score1");
+const score2 = document.querySelector(".score2");
+const score3 = document.querySelector(".score3");
+const score4 = document.querySelector(".score4");
+
+let ctasks = 0;
+let cdone = 0;
+let cundone = 0;
+let cpercent = 0;
+
+
+// Print welcome info
+if (localStorage.getItem("curuser") != "none") {
+  welcome.style.visibility = "visible";
+  username.innerText = localStorage.getItem("username");
+  lBtn.innerText = "Logout";
+  lBtn.style.backgroundColor = "red";
+}else{
+  welcome.style.visibility = "hidden";
+  lBtn.innerText = "Login";
+  lBtn.style.backgroundColor = "blue";
+}
+
+// Onload call get Todos and display
+getTodos();
+
+// Fetch the todos from db ==================================================
+function getTodos() {
+  const url = "http://127.0.0.1:8000/api/todos";
+
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      if (data) {
+
+        // Refresh scoreboard count
+        score1.innerText = data.length;
+
+        const doneArr = data.filter(item => item.status != 0);
+
+        score2.innerText = doneArr.length;
+
+        score3.innerText = score1.innerText - score2.innerText;
+
+        score4.innerText = ((score2.innerText/score1.innerText)*100).toFixed(1)
+
+        showTodos(data);
+      } else {
+        feedback.innerText = "... you have no scheduled tasks for now.";
+      }
+    })
+    .catch((err) => feedback.innerText = 'Bad request or server temporarily down. Try again later.');
+}
+
+// ==== Display Scoreboard counts
+
+
+
+//  End of fetch and display section ==========================================
+
+addBtn.addEventListener("click", addTask);
+
+function addTask() {
+  if (inputBox.value == "" || inputBox.value == 0) {
+    inputBox.value = "";
+    notify("Please enter a task in the input box.");
+  } else {
+    const posturl = "http://127.0.0.1:8000/api/todos";
+    const payload = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Authorization": localStorage.getItem('curuser')
+      },
+      body: JSON.stringify({
+        task: inputBox.value,
+        status: 0,
+      }),
+    };
+
+    fetch(posturl, payload)
+      .then((response) => response.json())
+      .then((resdata) => {
+
+        if (resdata.statuscode == 200) {
+          getTodos();
+        } else if ((resdata.message = "Unauthenticated.")) {
+          notify(
+            "You are " +
+              resdata.message +
+              " Please login to have access to add a Todo."
+          );
+        }
+      })
+      .catch((err) => notify('Bad request or server may be temporarily down. Try again.'));
+  }
+}
+
+// ====== Display Todos Map function =============================
+function showTodos(tdarray) {
+ 
+  ul.innerText = "";
+
+  tdarray.map((todo) => {
+    const li = document.createElement("li");
+    const p = document.createElement("p");
+    p.innerText = todo["task"];
+    li.appendChild(p);
+
+    const div1 = document.createElement("div");
+
+    const doneBtn = document.createElement("button");
+    doneBtn.innerText = "Undone";
+    doneBtn.classList.add("donebtn");
+
+    if (todo["status"] == 1) {
+      doneBtn.classList.add("donebtngreen");
+      doneBtn.innerText = "Done";
+      doneBtn.style.border = "1px solid white";
+      li.style.backgroundColor = "green";
+    }
+    div1.appendChild(doneBtn);
+
+    const editBtn = document.createElement("button");
+    editBtn.innerText = "Edit";
+    editBtn.classList.add("editbtn");
+    div1.appendChild(editBtn);
+
+    const delBtn = document.createElement("button");
+    delBtn.innerText = "Del";
+    delBtn.classList.add("delbtn");
+    div1.appendChild(delBtn);
+
+    li.appendChild(div1);
+    li.classList.add("liclass");
+    ul.appendChild(li);
+    inputBox.value = "";
+
+    // delBtn ======================================================
+    delBtn.onclick = function () {
+      // Send Delete request to db
+      const delurl = `http://127.0.0.1:8000/api/todos/${todo["id"]}`;
+
+      const payload = {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": localStorage.getItem('curuser')
+        },
+      };
+
+      fetch(delurl, payload)
+        .then((response) => response.json())
+        .then((resdata) => {
+
+          if (resdata.message == "Unauthenticated.") {
+            notify(
+              "You are " +
+                resdata.message +
+                " You need to be logged in to have delete access."
+            );
+          } else {
+            if (resdata == 1) {
+              // notify("Todo deleted successfully");
+            } else {
+              notify("Todo delete failed. Please try again.");
+            }
+
+            // location.reload();
+            getTodos();
+          }
+        })
+        .catch((err) => notify('Bad request. Try again.'));
+    };
+
+    // EditBtn ====================================================
+    editBtn.addEventListener("click", () => {
+      if (editBtn.innerText == "Edit") {
+        inputBox.value = p.innerText;
+        editBtn.innerText = "Save";
+        addBtn.disabled = true;
+        addBtn.style.backgroundColor = "grey";
+        // addBtn.innerText = "disabled";
+      } else {
+        if (inputBox.value == "" || inputBox.value == 0) {
+          inputBox.value = "";
+          notify("Please enter a task in the input box.");
+        } else {
+          const completed = 0;
+          updateTodo(todo["id"], completed, inputBox.value);
+        }
+      }
+    });
+
+    function returnebtn(){
+      editBtn.innerText = "Edit";
+      inputBox.value = "";
+      getTodos();
+    }
+    // End of editBtn section ====================================
+
+    // Done Btn ====================================================
+    doneBtn.addEventListener("click", () => {
+      if (doneBtn.innerText == "Undone") {
+        const completed1 = 1;
+        updateTodo(todo["id"], completed1, p.innerText);
+      } else {
+        const completed2 = 0;
+        updateTodo(todo["id"], completed2, p.innerText);
+      }
+    });
+    // End of Done Btn section ====================================
+  });
+}
+
+// Search Todos =============================================
+function searchTodos() {
+  let searchitem = inputBox.value;
+
+  if (searchitem == "" || searchitem == 0) {
+    inputBox.value = "";
+    notify("Please enter a searchitem in the input box.");
+  } else {
+    const searchurl = `http://127.0.0.1:8000/api/todos/search/${searchitem}`;
+
+    const payload = {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    };
+
+    fetch(searchurl)
+      .then((response) => response.json())
+      .then((resdata) => {
+        if (resdata.length > 0) {
+          ul.innerText = "";
+          showTodos(resdata);
+        } else {
+          ul.innerText = "";
+          ul.innerHTML = '<li class="liclass">No match found</li>';
+        }
+      })
+      .catch((err) => notify('Failed. There is an issue with the request.'));
+  }
+}
+
+// Upadte Todo function ========================================
+function updateTodo(todoid, statusState, tasktxt) {
+  const updateurl = `http://127.0.0.1:8000/api/todos/${todoid}`;
+  const payload = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: localStorage.getItem('curuser')
+    },
+    body: JSON.stringify({
+      task: tasktxt,
+      status: statusState,
+    }),
+  };
+
+  fetch(updateurl, payload)
+    .then((response) => response.json())
+    .then((resdata) => {
+
+      if (resdata == 1) {
+        // doneBtn.style.backgroundColor = 'green';
+        // doneBtn.innerText = "Done"
+        getTodos();
+      } else if (resdata == 0) {
+        notify("Todo could not be updated. Please try again.");
+      } else if (resdata.message == "Unauthenticated.") {
+        notify(
+          "You are " +
+            resdata.message +
+            " Please login to have access to update a Todo."
+        );
+        addBtn.disabled = false;
+        addBtn.style.backgroundColor = "#4785ff";
+        getTodos();
+      }
+    })
+    .catch((err) => notify('Bad request. Try again.'));
+}
+
+
+// =======================================================================
+// Registration & Login handler ==========================================
+// =======================================================================
+regForm.addEventListener("submit", regNewUser);
+
+function regNewUser(e) {
+  e.preventDefault();
+
+  // let formData = new FormData()
+  const name = document.getElementById("nameinp").value;
+  const email = document.getElementById("emailinp").value;
+  const password = document.getElementById("passinp").value;
+  const password2 = document.getElementById("passinp2").value;
+
+  // Handle Registration ============================================
+  if (submitBtn.value == "Register") {
+    if (password != password2) {
+      notify1("Passwords does not match.");
+    } else {
+      const regposturl = "http://127.0.0.1:8000/api/register";
+      const payload = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          password: password,
+        }),
+      };
+
+      fetch(regposturl, payload)
+        .then((response) => response.json())
+        .then((regdata) => {
+
+          if (regdata.statuscode == 201) {
+
+            notify1("New User Registration successful. Please Login.");
+            displayLoginForm();
+
+          } else if(regdata.statuscode == 402) {
+
+            notify1(regdata.message);
+
+          } else {
+
+            notify1(regdata.errors.email + "Please register with another email.");
+
+          }
+        })
+        .catch((err) => notify1('Bad request. Try again.'));
+    }
+
+  }else{
+
+    // Handle Login ===================================================
+    if (!email || !password) {
+
+      notify1("Please fill email and password.");
+
+    } else {
+
+      const logposturl = "http://127.0.0.1:8000/api/login";
+      const payload = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      };
+
+      fetch(logposturl, payload)
+        .then((response) => response.json())
+        .then((logdata) => {
+
+          if (logdata.statuscode == 200) {
+
+            // Add Bearer to the token
+            const btoken = `Bearer ${logdata.token}`;
+            localStorage.setItem("curuser", btoken);
+            localStorage.setItem("username", logdata.user.name);
+
+            lBtn.innerText = "Logout";
+
+            welcome.style.visibility = "visible";
+            username.innerText = logdata.user.name;
+
+            regFormDiv.style.display = "none";
+            document.getElementById("todoarea").style.display = "block";
+          } else {
+            notify1("Wrong email or password. Please try again.");
+          }
+        })
+        .catch((err) => notify1('Bad request. Try again.'));
+    }
+
+  }
+
+
+}
+
+
+
+// Show Registration form ======================================
+function showRegForm() {
+
+  if(lBtn.innerText == "Login"){
+  regFormDiv.style.display = "block";
+  document.getElementById("nameinp").style.display = "block";
+  document.getElementById("passinp2").style.display = "block";
+  document.getElementById("submitbtn").value = "Register";
+  document.getElementById("todoarea").style.display = "none";
+
+  }else{
+    notify("A user is already logged in. Please log the user out first.")
+  }
+}
+
+// =========================================================
+// Handle Logout & Show Login form ===========================
+function showLoginForm() {
+
+  if(lBtn.innerText == "Logout"){
+
+    // console.log("logged out");
+    // console.log(localStorage.getItem('curuser'));
+    const logoposturl = "http://127.0.0.1:8000/api/logout";
+    const payload = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": localStorage.getItem('curuser')
+      },
+    };
+
+    fetch(logoposturl, payload)
+      .then((response) => response.json())
+      .then((logdata) => {
+
+        if (logdata.statuscode == 200) {
+          localStorage.setItem("curuser", "none");
+          localStorage.setItem("username", "none");
+
+          lBtn.innerText = "Login";
+          welcome.style.visibility = "hidden";
+
+        } else if(logdata.message == 'Unauthenticated.') {
+
+          notify(`You are ${logdata.message}`);
+
+        }else {
+
+          notify("You are already logged out");
+
+        }
+
+      })
+      .catch((err) => notify('Bad request. Try again.'));
+
+    
+  }else{
+    
+   displayLoginForm();
+
+  }
+
+}
+
+// Display Login form
+function displayLoginForm(){
+  regFormDiv.style.display = "block";
+  document.getElementById("nameinp").style.display = "none";
+  document.getElementById("passinp2").style.display = "none";
+  document.getElementById("submitbtn").value = "Login";
+  document.getElementById("todoarea").style.display = "none";
+}
+
+// Close registration or login form
+function closeForm() {
+  regFormDiv.style.display = "none";
+  document.getElementById("todoarea").style.display = "block";
+}
+
+// Error feedback notification handler
+function notify(txt){
+
+  feedback.innerText = txt;
+  feedback.style.visibility = 'visible';
+
+  setTimeout(()=> {
+    feedback.style.visibility = 'hidden';
+  }, 3000)
+}
+
+function notify1(txt){
+
+  feedback1.innerText = txt;
+  feedback1.style.visibility = 'visible';
+
+  setTimeout(()=> {
+    feedback1.style.visibility = 'hidden';
+    feedback1.style.position = 'absolute';
+
+  }, 3000)
+}
+
+// Handle Enter key to add new todo
+addEventListener('keypress', (e) => {
+  
+  if(e.keyCode == 13)  addTask();
+
+});
+
+    </script>
+  </body>
+</html>

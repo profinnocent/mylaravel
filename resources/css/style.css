@@ -1,0 +1,391 @@
+:root{
+    --priclr:#06283d;
+    --secclr:#256d85;
+    --actclr:#4785ff;
+    --offwyt:#dffdff;
+    --dulred: rgb(245, 24, 24);
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--offwyt);
+}
+
+button{
+    cursor: pointer;
+}
+
+.top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px 0;
+}
+
+.top h1{
+    font-size: 1.5rem;
+}
+
+#regbtn{
+    background-color: transparent;
+    border: 1px solid var(--offwyt);
+    padding:5px 10px;
+    border-radius: 50px;
+    color: var(--offwyt);
+}
+
+.nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+padding: 5px 7px;
+height: 70px;
+border-bottom: 1px solid var(--offwyt);
+margin-bottom: 10px;
+}
+
+.logoarea{
+    display: flex;
+    align-items: center;
+    
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    color: var(--offwyt);
+    margin: 5px;
+    /* margin-bottom: 0; */
+    visibility: hidden;
+}
+
+#hispan{
+    margin-left: 5px;
+}
+
+#lbtn{
+    color: var(--offwyt);
+    padding: 5px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--actclr);
+    font-size: 1rem;
+    font-weight: bolder;
+    text-transform:capitalize;
+}
+
+/* Reg & Login form area =================================== */
+.regformdiv{
+    /* position: absolute;
+    visibility: hidden; */
+    display: none;
+    border: 2px solid var(--offwyt);
+margin: 10px;
+margin-bottom: 150px;
+padding: 50px 10px;
+border-radius: 10px;
+/* background-color: var(--secclr); */
+}
+
+.regformdiv h2{
+    text-align: center;
+    color: var(--offwyt);
+}
+
+#regform{
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    margin: auto;
+    padding: 10px 20px;
+}
+
+#regform input{
+    margin-bottom: 5px;
+    padding: 5px;
+    background-color: var(--offwyt);
+    outline: none;
+    border: none;
+    border-radius: 5px;
+}
+
+#regform #submitbtn{
+    background-color: var(--actclr);
+    font-size:medium;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+#closebtn{
+    background-color: transparent;
+    border: none;
+    color: var(--offwyt);
+    margin-left: 80px;
+    margin-top: 20px;
+    text-decoration: underline;
+}
+
+/* Scorebaord Area =================================== */
+.scoreboard{
+    display: flex;
+    justify-content: space-evenly;
+    color: var(--offwyt);
+}
+.tcard{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid var(--actclr);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.ticon{
+    font-size: 1rem;
+}
+
+.sbtxt{
+    color: var(--offwyt);
+    margin-left: 15px;
+    margin-bottom: 5px;
+}
+.score{
+    font-size: 1.7rem;
+    font-weight: bold;
+    margin-right: 3px;
+}
+
+.score1{
+    color: yellow;
+    font-size: 1rem;
+
+}
+
+.score2{
+    color: rgb(127, 224, 127);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.score3{
+    color: rgb(250, 79, 79);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.score4{
+    color: rgb(248, 181, 58);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+
+
+
+
+
+/* Scorebaord Area =================================== */
+
+.container{
+    background-color:var(--priclr);
+    height: 95%;
+    width: 95%;
+    max-width: 500px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    /* color: var(--offwyt) */
+}
+
+#tagline{
+    text-align: center;
+    color: var(--offwyt);
+    margin-bottom: 7px;
+}
+
+h1{
+    color: var(--offwyt);
+    text-align: center;
+    padding-left: 5px;
+}
+
+.feedback, .feedback1{
+    text-align: center;
+    color: var(--offwyt);
+    background-color: red;
+    padding: 5px;
+    margin: 5px 10px;
+    border-radius: 25px;
+    visibility: hidden;
+    transition: visibility 3s;
+    }
+
+
+
+.inputs{
+    text-align: center;
+    margin: 10px 0 20px;
+}
+
+input{
+    height: 30px;
+}
+
+#inputbox{
+    width: 95%;
+    padding: 0 5px;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    text-align: center;
+}
+
+.inputbtns{
+    margin-top: 10px;
+}
+
+#addbtn{
+    width: 20%;
+    background-color:var(--actclr);
+    border-radius: 5px;
+    box-shadow: 2px 2px 1px var(--offwyt) ;
+    color: var(--priclr);
+    font-weight: bold;
+}
+
+#searchbtn{
+    width: 20%;
+    background-color:var(--secclr);
+    border-radius: 5px;
+    box-shadow: 2px 2px 1px var(--offwyt) ;
+    color: var(--offwyt);
+    font-weight: bold;
+    margin: 0 20px;
+}
+
+.ulbox{
+    height: 250px;
+    overflow-y: scroll;
+}
+
+ul{
+    display: flex;
+    flex-direction: column-reverse;
+    /* height: 280px;
+    overflow-y: scroll; */
+}
+
+.liclass{
+    margin: 5px 10px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--offwyt);
+}
+
+.delbtn{
+background-color: var(--dulred);
+padding: 5px 8px;
+border-radius: 5px;
+color: var(--offwyt);
+font-weight: bold;
+border: none;
+    outline: none;
+}
+
+.editbtn{
+    background-color:var(--priclr);
+    padding: 5px 8px;
+    border-radius: 5px;
+    color: var(--offwyt);
+    font-weight: bold;
+    margin: 0 2px;
+    border: none;
+    outline: none;
+    }
+
+.donebtn{
+    background-color: red;
+    padding: 5px 8px;
+    border-radius: 5px;
+    color: var(--offwyt);
+    font-weight: bold;
+    border: none;
+    outline: none;
+    }    
+
+.donebtngreen{
+    background-color: green;
+    padding: 5px 8px;
+    border-radius: 5px;
+    color: var(--offwyt);
+    font-weight: bold;
+    border: none;
+    outline: none;
+    }
+
+.remclass{
+    display: none;
+}
+
+footer{
+    height: 5px;
+    text-align: center;
+    color: var(--offwyt);
+    margin-top: 5px;
+    font-size: 12px;
+    /* border-top: 1px soldi var(--offwyt); */
+    padding-top: 5px;
+}
+
+footer #fspan{
+    color: var(--offwyt);
+    font-size: bold;
+    background-color: green;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
+
+/* ================================================== */
+/* Media Query =============================== */
+@media only screen and (max-width:576px){
+    .ulbox{
+        height: 350px;
+        width:100%;
+        /* overflow-y: scroll; */
+    }
+
+    .container{
+        height: 100vh;
+        width: 100%;
+        border: none;
+        border-radius: 5px;
+        /* padding: 10px; */
+        /* color: var(--offwyt) */
+    }
+
+   
+}
+
+@media only screen and (max-width:400px){
+    .ulbox{
+        height: 380px;
+        overflow-y: scroll;
+    }
+
+    .ticon{
+        display: none;
+    }
+}
