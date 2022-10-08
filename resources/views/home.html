@@ -540,7 +540,7 @@ getTodos();
 
 // Fetch the todos from db ==================================================
 function getTodos() {
-  const url = "http://127.0.0.1:8000/api/todos";
+  const url = "/todos";
 
   fetch(url)
     .then((res) => res.json())
@@ -579,7 +579,7 @@ function addTask() {
     inputBox.value = "";
     notify("Please enter a task in the input box.");
   } else {
-    const posturl = "http://127.0.0.1:8000/api/todos";
+    const posturl = "/api/todos";
     const payload = {
       method: "POST",
       headers: {
@@ -654,7 +654,7 @@ function showTodos(tdarray) {
     // delBtn ======================================================
     delBtn.onclick = function () {
       // Send Delete request to db
-      const delurl = `http://127.0.0.1:8000/api/todos/${todo["id"]}`;
+      const delurl = `/api/todos/${todo["id"]}`;
 
       const payload = {
         method: "DELETE",
@@ -737,7 +737,7 @@ function searchTodos() {
     inputBox.value = "";
     notify("Please enter a searchitem in the input box.");
   } else {
-    const searchurl = `http://127.0.0.1:8000/api/todos/search/${searchitem}`;
+    const searchurl = `/api/todos/search/${searchitem}`;
 
     const payload = {
       headers: {
@@ -763,7 +763,7 @@ function searchTodos() {
 
 // Upadte Todo function ========================================
 function updateTodo(todoid, statusState, tasktxt) {
-  const updateurl = `http://127.0.0.1:8000/api/todos/${todoid}`;
+  const updateurl = `/api/todos/${todoid}`;
   const payload = {
     method: "PUT",
     headers: {
@@ -821,7 +821,7 @@ function regNewUser(e) {
     if (password != password2) {
       notify1("Passwords does not match.");
     } else {
-      const regposturl = "http://127.0.0.1:8000/api/register";
+      const regposturl = "/api/register";
       const payload = {
         method: "POST",
         headers: {
@@ -866,7 +866,7 @@ function regNewUser(e) {
 
     } else {
 
-      const logposturl = "http://127.0.0.1:8000/api/login";
+      const logposturl = "/api/login";
       const payload = {
         method: "POST",
         headers: {
@@ -934,7 +934,7 @@ function showLoginForm() {
 
     // console.log("logged out");
     // console.log(localStorage.getItem('curuser'));
-    const logoposturl = "http://127.0.0.1:8000/api/logout";
+    const logoposturl = "/api/logout";
     const payload = {
       method: "POST",
       headers: {
