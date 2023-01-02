@@ -13,18 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
     // User public Routes
-    Route::post('/register', [UserController::class, 'register']);
+//     Route::post('/register', [UserController::class, 'register']);
 
-    Route::post('/login', [UserController::class, 'login']);
+//     Route::post('/login', [UserController::class, 'login']);
 
-    // Todos Public Routes
-    Route::get('/todos', [TodosController::class, 'index']);
+//     // Todos Public Routes
+//     Route::get('/todos', [TodosController::class, 'index']);
 
-    Route::get('/todos/{id}', [TodosController::class, 'show']);
+//     Route::get('/todos/{id}', [TodosController::class, 'show']);
 
-    Route::get('/todos/search/{name}', [TodosController::class, 'search']);
+//     Route::get('/todos/search/{name}', [TodosController::class, 'search']);
 
 
-Route::get('/', function () {
-    return view('home');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });

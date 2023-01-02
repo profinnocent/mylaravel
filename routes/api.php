@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\TodosController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserTodosController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -40,9 +43,9 @@ use Illuminate\Support\Facades\Route;
     Route::get('/tours/search/{name}', [ToursController::class, 'search']);
 
 // ========================================================
-// Protected Routes
+// Protected Routes : User needs to be authenticated
 // =========================================================
-    Route::group(['middleware' => ['auth:sanctum']], function(){
+Route::group(['middleware' => ['auth:sanctum']], function(){
 
     Route::post('/logout', [UserController::class, 'logout']);
 
@@ -60,8 +63,56 @@ use Illuminate\Support\Facades\Route;
 
     Route::delete('/tours/{id}', [ToursController::class, 'destroy']);
 
+    Route::get('/user', [UserController::class, 'getCurrentUser']);
+
+    // =============================
+    // User Specific Todos Routes
+    Route::get('/user/todos', [UserTodosController::class, 'index']);
+
+    Route::get('/user/todos/{id}', [UserTodosController::class, 'show']);
+
+    Route::get('/user/todos/search/{name}', [UserTodosController::class, 'search']);
+
+    Route::post('/user/todos', [UserTodosController::class, 'store']);
+
+    Route::put('/user/todos/{id}', [UserTodosController::class, 'update']);
+
+    Route::delete('/user/todos/{id}', [UserTodosController::class, 'destroy']);
+
 });
 
+// =====================================================================
+// Admin Routes : 
+// =====================================================================
+
+// Protected : User needs to be authenticated and must be an Admin user
+Route::group(['middleware' => ['auth:sanctum', 'isadmin']], function (){
+
+    // User Access Routes
+    Route::get('/users', [AdminController::class, 'getUsers']);
+
+    Route::get('/users/{id}', [AdminController::class, 'getOneUser']);
+
+    Route::post('/users', [AdminController::class, 'createUser']);
+
+    Route::put('/users/{id}', [AdminController::class, 'updateUser']);
+
+    Route::delete('/users/{id}', [AdminController::class, 'deleteUser']);
+
+    Route::get('/users/search/{name}', [AdminController::class, 'searchUsers']);
+
+    // ==========================================================================
+    // Admin Routes
+    Route::post('/admins', [AdminController::class, 'createAdmin']);
+
+    Route::post('/admins/logout', [AdminController::class, 'adminlogout']);
+
+});
+
+// Unprotected : No authentification needed
+Route::post('/admins/login', [AdminController::class, 'adminlogin']);
 
 
-Route::middleware('auth:sanctum')->get('/user', [UserController::class, 'getUser']);
+
+
+

@@ -54,6 +54,8 @@ class UserController extends Controller
         // delete the current token that was used for the request
         $request->user()->currentAccessToken()->delete();
 
+        // $this->getUser($request)->currentAccessToken->delete();
+
 
         return response(['message' => 'Logged Out', 'statuscode'=>200]);
     }
@@ -97,9 +99,9 @@ class UserController extends Controller
     // ============================================
     // Get User handler
     // ===========================================
-    public function getUser(Request $request)
+    public function getCurrentUser(Request $request)
     {
-
         return $request->user();
     }
+
 }

@@ -16,6 +16,7 @@ return [
     |
     */
 
+    // Set to 'mysql' for local development and 'pgsql' for online testing
     'default' => env('DB_CONNECTION', 'pgsql'),
 
     /*

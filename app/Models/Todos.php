@@ -12,6 +12,7 @@ class Todos extends Model
     protected $fillable = [
         'task', 
         'status',
+        'userid'
     ];
 
 }

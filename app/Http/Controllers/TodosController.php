@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \Illuminate\Http\Response;
 
 use App\Models\Todos;
 
@@ -15,30 +16,36 @@ class TodosController extends Controller
      */
     public function index()
     {
-        return Todos::all();
+        return response()->json(['Tods'=> Todos::all(),
+                                'status'=>true], 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
         // print_r($request->all);
-        return response(['todos'=>Todos::create($request->all()), 'statuscode'=>200]);
+        // Get the logged in user id
+        $user = $request->user();
+
+        // return $user->id;
+
+        $validated = $request->validate(['task'=>'required|string',
+                                          'status'=>'required']);
+
+        $newTodo = Todos::create([ 'userid' => $user->id,
+                                    'task' => $validated['task'],
+                                    'status' => $validated['status']]);
+                                    
+        if($newTodo)
+
+        return response(['message'=>'New Todo created successfully',
+                        'todos'=>$newTodo, 
+                        'statuscode'=>200]);
+
+        return response(['message'=>'Failed to create New Todo. Try again.',
+                        'statuscode'=>400]);
     }
+
 
     /**
      * Display the specified resource.
@@ -48,20 +55,16 @@ class TodosController extends Controller
      */
     public function show($id)
     {
-        return Todos::find($id);
+        $todo = Todos::find($id);
+        if($todo) 
+        return response()->json(['todo'=>$todo, 'status'=>true], 201);
+
+        return response()->json(['message'=>'todo not found',
+                                'status'=>false], 400);
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
+   
     /**
      * Update the specified resource in storage.
      *
@@ -76,11 +79,17 @@ class TodosController extends Controller
 
         if($todo){
 
-            return $todo->update($request->all());
+            if($todo->update($request->all())){
+                return response(['message'=> 'Todo updated successfully.', 'statuscode' => 201]);
+            }
+
+            return response(['message'=> 'Failed to update Todo.', 'statuscode' => 401]);
         }
 
         return response(['message'=> 'Todo not found', 'statuscode' => 401]);
+    
     }
+
 
     /**
      * Remove the specified resource from storage.
